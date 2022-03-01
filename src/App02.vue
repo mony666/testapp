@@ -1,8 +1,11 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <!--计算属性-->
-  <div class="d1">{{msg.split('').reverse().join('')}}</div>
-  <div :id='reverseMsg' class="d1">{{reverseMsg}}</div>
+  <!--  javascript 表达式可以在模板语法使用-->
+  <h1> {{msg.split('')}}</h1>
+  <h1> {{msg.split('').reverse()}}</h1>
+  <h1> {{msg.split('').reverse().join('')}}</h1>
+  <div :id="msg.split('').reverse().join('')" :class="id"></div>
+  <div>{{color=='green'?'开心':'难过'}}</div>
 </template>
 
 <script>
@@ -11,17 +14,8 @@ export default {
   name: 'App',
   data () {
     return {
-      msg: 'helloworld'
-    }
-  },
-  computed: {
-    reverseMsg: function () {
-      return this.msg.split('').reverse().join('')
-    }
-  },
-  methods: {
-    toggleColor: function () {
-      this.attributeName = 'id'
+      msg: 'helloword',
+      color: 'yellow'
     }
   }
 
@@ -42,7 +36,7 @@ export default {
    height: 100px;
    background: red;
  }
-.d1 {
+#d2 {
   width: 100px;
   height: 100px;
   background: green;

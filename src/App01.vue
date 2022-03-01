@@ -1,8 +1,16 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <!--计算属性-->
-  <div class="d1">{{msg.split('').reverse().join('')}}</div>
-  <div :id='reverseMsg' class="d1">{{reverseMsg}}</div>
+  <h1> {{msg}}</h1>
+  <!--   v-once 内容只渲染一次-->
+  <h1 @click="changMsg" v-once>{{msg}}</h1>
+  <input type="text" v-model="msg">
+  <!--   v-html 加载html指令-->
+  <div>{{content}}</div>
+  <div v-html="content"></div>
+  <!--   v-bind 绑定属性-->
+  <div :id="id" :class="id"></div>
+  <div v-bind:id="id"></div>
+
 </template>
 
 <script>
@@ -11,20 +19,17 @@ export default {
   name: 'App',
   data () {
     return {
-      msg: 'helloworld'
-    }
-  },
-  computed: {
-    reverseMsg: function () {
-      return this.msg.split('').reverse().join('')
+      msg: 'helloword',
+      content: '<h1>标题</h1><h2>标题2</h2>',
+      id: 'd1'
     }
   },
   methods: {
-    toggleColor: function () {
-      this.attributeName = 'id'
+    changMsg () {
+      this.msg = '帅呆了'
+      this.id = 'd2'
     }
   }
-
 }
 </script>
 
@@ -42,7 +47,7 @@ export default {
    height: 100px;
    background: red;
  }
-.d1 {
+#d2 {
   width: 100px;
   height: 100px;
   background: green;

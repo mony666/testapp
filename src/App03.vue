@@ -1,8 +1,10 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <!--计算属性-->
-  <div class="d1">{{msg.split('').reverse().join('')}}</div>
-  <div :id='reverseMsg' class="d1">{{reverseMsg}}</div>
+  <!--动态指令-->
+  <div v-bind:[attributeName]="d1"></div>
+  <div :[attributeName]="d1"></div>
+  <button @click="toggleColor">点击切换颜色</button>
+  <button @[eventName]="toggleColor">点击切换颜色</button>
 </template>
 
 <script>
@@ -11,12 +13,9 @@ export default {
   name: 'App',
   data () {
     return {
-      msg: 'helloworld'
-    }
-  },
-  computed: {
-    reverseMsg: function () {
-      return this.msg.split('').reverse().join('')
+      attributeName: 'class',
+      d1: 'd1',
+      eventName: 'click'
     }
   },
   methods: {
