@@ -1,9 +1,13 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <div>
-    <ol>
-      <li v-for="(item,index) in news " :key='index'>{{item}}</li>
-    </ol>
+    <h1 v-if="user=='超级vip'">欢迎金主爸爸</h1>
+    <h1 v-else-if="user=='vip'">欢迎会员</h1>
+    <h1 v-else>充值更强大</h1>
+    <button @click="toggleUser">vip过期</button>
+    <!--    设置1个内容切换显示-->
+    <h1 v-show="isShow">切换显示内容</h1>
+    <button @click="toggleShow">切换</button>
   </div>
 </template>
 <script>
@@ -12,13 +16,8 @@ export default {
   name: 'App',
   data () {
     return {
-      news: [
-        '“两会时间”即将开启',
-        '外媒：基辅电视塔附近爆炸致5死',
-        '公安部开展打击拐卖妇幼犯罪行动',
-        '俄外长发言时多国外交官退场',
-        '拜登：普京在战事上“严重失算”'
-      ]
+      user: 'vip',
+      isShow: true
     }
   },
   methods: {
