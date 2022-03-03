@@ -1,45 +1,54 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
   <div>
-    <ol>
-      <li v-for="(item,index) in news " :key='index'>{{item}}</li>
-    </ol>
+    <Headers></Headers>
+    <Main></Main>
+    <Footer></Footer>
+    <!--通过props传递子组件数据-->
+    <News :content="newsContent" :msg="msg"></News>
+    <!--子组件传递数据给父组件，自定义事件-->
+    <Login @sendParentMsg="getChildMsg"></Login>
+    <h1>从子组件获取到的值：{{msg}}</h1>
+
   </div>
 </template>
 <script>
-
+import Headers from './components/Headers.vue'
+import Footer from './components/Footer.vue'
+import Main from './components/Main.vue'
+import News from './components/News.vue'
+import Login from  './components/Login.vue'
 export default {
   name: 'App',
   data () {
     return {
-      news: [
-        '“两会时间”即将开启',
-        '外媒：基辅电视塔附近爆炸致5死',
-        '公安部开展打击拐卖妇幼犯罪行动',
-        '俄外长发言时多国外交官退场',
-        '拜登：普京在战事上“严重失算”'
-      ]
+      newsContent: '振兴中华',
+      msg: ''
     }
   },
   methods: {
-    toggleUser: function () {
-      this.user = '普通用户'
-    },
-    toggleShow: function () {
-      this.isShow = !this.isShow
+    getChildMsg:function (value) {
+      console.log(value)
+      this.msg = value
     }
+    },
+  components: {
+    Headers,
+    Footer,
+    Main,
+    News,
+    Login
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
+  /*-webkit-font-smoothing: antialiased;*/
+  /*-moz-osx-font-smoothing: grayscale;*/
+  /*text-align: center;*/
+  /*color: #2c3e50;*/
+  /*margin-top: 60px;*/
 }
 .active{
   background: #42b983;
